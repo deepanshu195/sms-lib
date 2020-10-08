@@ -7,6 +7,12 @@
     "test": "mocha",
     "build": "tsc -p ."
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Buddy-Git/sms-svc.git"
+  },
+  "homepage": "https://github.com/Buddy-Git/sms-svc",
+  
   "author": "",
   "license": "ISC",
   "devDependencies": {
