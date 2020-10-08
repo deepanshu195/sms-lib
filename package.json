@@ -1,6 +1,6 @@
 {
   "name": "@buddy-git/sms-service",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Send sms via this package. Written in TS, it allows you to integrate with other sms service providers easily.",
   "main": "dist/index.js",
   "scripts": {
