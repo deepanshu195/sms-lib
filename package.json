@@ -1,9 +1,8 @@
 {
   "name": "sms-service",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Send sms via this package. Written in TS, it allows you to integrate with other sms service providers easily.",
   "main": "dist/index.js",
-  "type": "dist",
   "scripts": {
     "test": "mocha",
     "build": "tsc -p ."
