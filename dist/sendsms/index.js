@@ -3,98 +3,62 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const servicesRequest_1 = __importDefault(require("../network/servicesRequest"));
-// @ts-ignore
-const credentials_1 = __importDefault(require("../credentials"));
-const responseMessage_1 = __importDefault(require("../utils/responseMessage"));
+const kalyera_1 = __importDefault(require("./kalyera"));
+const awspinpoint_1 = __importDefault(require("./awspinpoint"));
+const mockedService_1 = __importDefault(require("./mockedService"));
 class SendSms {
     constructor() { }
-    checkForCreds(service, account) {
-        // @ts-ignore
-        let credConfig = credentials_1.default.getCreds(service);
-        if (credConfig) {
-            if (account && credConfig[account]) {
-                return credConfig[account];
-            }
-            return credConfig;
+    sendTransactionalMessage(message, phone) {
+        for (let index = 0; index < this.services.length; index++) {
+            console.log(this.services[index]);
+            let serviceFunctionCalled = this.services[index].sendTransactionalMessage(message, phone);
+            if (!serviceFunctionCalled)
+                continue;
+            return serviceFunctionCalled;
         }
-        else {
-            return false;
-        }
+        throw new Error("No service allowed this.");
     }
-    checkForInputValue(message, phone, service, account) {
-        if (!message || !phone || !service) {
-            return {
-                error: true,
-                message: `${message ? (phone ? "service" : "phone") : "message"} is mandatory.`,
-            };
+    sendOtpMessage(message, phone) {
+        for (let index = 0; index < this.services.length; index++) {
+            let serviceFunctionCalled = this.services[index].sendOtpMessage(message, phone);
+            if (!serviceFunctionCalled)
+                continue;
+            return serviceFunctionCalled;
         }
-        return {
-            error: false,
-        };
+        throw new Error("No service allowed this.");
     }
-    /**
-     *
-     * @param message
-     * @param phone
-     * @param service
-     * @param account
-     */
-    sendTransactionalMessage(message, phone, service, account) {
-        let creditConfig = this.checkForCreds(service, account);
-        if (creditConfig &&
-            !this.checkForInputValue(message, phone, service).error) {
-            return servicesRequest_1.default.serviceRequest(creditConfig, message, phone, service);
+    sendPromotionalMessage(message, phone) {
+        for (let index = 0; index < this.services.length; index++) {
+            let serviceFunctionCalled = this.services[index].sendPromotionalMessage(message, phone);
+            if (!serviceFunctionCalled)
+                continue;
+            return serviceFunctionCalled;
         }
-        else {
-            if (this.checkForInputValue(message, phone, service).error)
-                return Promise.reject(Object.assign(responseMessage_1.default.error.BAD_REQUEST, {
-                    error: this.checkForInputValue(message, phone, service).message,
-                }));
-            return Promise.reject(responseMessage_1.default.error.NOT_FOUND);
-        }
+        throw new Error("No service allowed this.");
     }
-    /**
-     *
-     * @param message
-     * @param phone
-     * @param service
-     * @param account
-     */
-    sendOtpMessage(message, phone, service, account) {
-        let creditConfig = this.checkForCreds(service, account);
-        if (creditConfig &&
-            !this.checkForInputValue(message, phone, service).error) {
-            return servicesRequest_1.default.serviceRequest(creditConfig, message, phone, service);
-        }
-        else {
-            if (this.checkForInputValue(message, phone, service).error)
-                return Promise.reject(Object.assign(responseMessage_1.default.error.BAD_REQUEST, {
-                    error: this.checkForInputValue(message, phone, service).message,
-                }));
-            return Promise.reject(responseMessage_1.default.error.NOT_FOUND);
-        }
+    checkForServiceAndIfFoundSendSMS(account) { }
+    addVendors(config) {
+        let vendors = [];
+        let error;
+        config.vendorConfigList.forEach((element) => {
+            if (element.type && element.cred)
+                vendors.push(this.smsVendorFactory(element));
+            else
+                error = true;
+        });
+        if (error)
+            throw new Error("type and cred are mandatory.");
+        else
+            this.services = vendors;
     }
-    /**
-       *
-       * @param message
-       * @param phone
-       * @param service
-       * @param account
-        Not in use currently. Under Development
-       */
-    sendPromotionMessage(message, phone, service, account) {
-        let creditConfig = this.checkForCreds(service, account);
-        if (creditConfig &&
-            !this.checkForInputValue(message, phone, service).error) {
-            return servicesRequest_1.default.serviceRequest(creditConfig, message, phone, service);
-        }
-        else {
-            if (this.checkForInputValue(message, phone, service).error)
-                return Promise.reject(Object.assign(responseMessage_1.default.error.BAD_REQUEST, {
-                    error: this.checkForInputValue(message, phone, service).message,
-                }));
-            return Promise.reject(responseMessage_1.default.error.NOT_FOUND);
+    smsVendorFactory(config) {
+        switch (config.type) {
+            case "kalyera":
+                return new kalyera_1.default(config.cred);
+            case "awspinpoint":
+                return new awspinpoint_1.default(config.cred);
+            default:
+                return new mockedService_1.default(config.cred);
         }
     }
 }

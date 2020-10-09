@@ -32,9 +32,18 @@ let error = {
         success:false
     }   
 }
+let mockedResponse ={
+    failure:{
+        status:500,
+        message:"INTERNAL_ERROR",
+        error:"This is coming from mocked response.",
+        success:false
+    },
+}
 
 let response = {
     success,
-    error
+    error,
+    mockedResponse
 }
 export default response;

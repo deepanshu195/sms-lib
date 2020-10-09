@@ -33,6 +33,14 @@ declare let response: {
             success: boolean;
         };
     };
+    mockedResponse: {
+        failure: {
+            status: number;
+            message: string;
+            error: string;
+            success: boolean;
+        };
+    };
 };
 export default response;
 //# sourceMappingURL=responseMessage.d.ts.map

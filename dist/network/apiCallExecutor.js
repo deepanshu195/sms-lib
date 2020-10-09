@@ -14,26 +14,35 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const axios_1 = __importDefault(require("axios"));
 const responseMessage_1 = __importDefault(require("../utils/responseMessage"));
-function apiCallExecutor(requestedObject, service) {
+function apiCallExecutor(requestedObject) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             let response = yield axios_1.default(requestedObject);
             if (response.status && response.status === 200) {
-                if (response.data.status && response.data.status.toLowerCase() != "ok")
-                    return Object.assign(responseMessage_1.default.success.SUCCESS, { data: response.data });
-                return Object.assign(responseMessage_1.default.error.NOT_FOUND, { data: response.data });
+                console.log(response.data.status);
+                if (response.data.status && response.data.status.toLowerCase() == "ok")
+                    return Object.assign(responseMessage_1.default.success.SUCCESS, {
+                        data: response.data,
+                    });
+                return Object.assign(responseMessage_1.default.error.BAD_REQUEST, {
+                    data: response.data,
+                });
             }
             else {
-                return Object.assign(responseMessage_1.default.error.BAD_REQUEST, { data: response.data });
+                return Object.assign(responseMessage_1.default.error.NOT_FOUND, {
+                    data: response.data,
+                });
             }
         }
         catch (e) {
-            return Object.assign(responseMessage_1.default.error.INTERNAL_ERROR, { message: e.message || "Something went wrong." });
+            return Object.assign(responseMessage_1.default.error.INTERNAL_ERROR, {
+                message: e.message || "Something went wrong.",
+            });
         }
     });
 }
 const api = {
-    apiCallExecutor
+    apiCallExecutor,
 };
 exports.default = api;
 //# sourceMappingURL=apiCallExecutor.js.map

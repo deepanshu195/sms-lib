@@ -1,144 +1,70 @@
-import ServiceRequest from "../network/servicesRequest";
-// @ts-ignore
-import CredInstance from "../credentials";
 import responseMessage from "../utils/responseMessage";
+import Kalyera from "./kalyera";
+import AwsPinpoint from "./awspinpoint";
+import MocekdService from "./mockedService";
 class SendSms {
   constructor() {}
-  private checkForCreds(service: string, account?: string) {
-    // @ts-ignore
-    let credConfig = CredInstance.getCreds(service);
-    if (credConfig) {
-      if (account && credConfig[account]) {
-        return credConfig[account];
-      }
-      return credConfig;
-    } else {
-      return false;
-    }
-  }
+  services: any;
 
-  private checkForInputValue(
-    message: string,
-    phone: number,
-    service: string,
-    account?: string
-  ) {
-    if (!message || !phone || !service) {
-      return {
-        error: true,
-        message: `${
-          message ? (phone ? "service" : "phone") : "message"
-        } is mandatory.`,
-      };
-    }
-    return {
-      error: false,
-    };
-  }
-
-  /**
-   *
-   * @param message
-   * @param phone
-   * @param service
-   * @param account
-   */
-  sendTransactionalMessage(
-    message: string,
-    phone: number,
-    service: string,
-    account?: string
-  ): Promise<any> {
-    let creditConfig = this.checkForCreds(service, account);
-    if (
-      creditConfig &&
-      !this.checkForInputValue(message, phone, service).error
-    ) {
-      return ServiceRequest.serviceRequest(
-        creditConfig,
+  sendTransactionalMessage(message: string, phone: number) {
+    for (let index = 0; index < this.services.length; index++) {
+      console.log(this.services[index]);
+      let serviceFunctionCalled = this.services[index].sendTransactionalMessage(
         message,
-        phone,
-        service
+        phone
       );
-    } else {
-      if (this.checkForInputValue(message, phone, service).error)
-        return Promise.reject(
-          Object.assign(responseMessage.error.BAD_REQUEST, {
-            error: this.checkForInputValue(message, phone, service).message,
-          })
-        );
-      return Promise.reject(responseMessage.error.NOT_FOUND);
+      if (!serviceFunctionCalled) continue;
+      return serviceFunctionCalled;
     }
+    throw new Error("No service allowed this.");
   }
-  /**
-   *
-   * @param message
-   * @param phone
-   * @param service
-   * @param account
-   */
-  sendOtpMessage(
-    message: string,
-    phone: number,
-    service: string,
-    account?: string
-  ): Promise<any> {
-    let creditConfig = this.checkForCreds(service, account);
-    if (
-      creditConfig &&
-      !this.checkForInputValue(message, phone, service).error
-    ) {
-      return ServiceRequest.serviceRequest(
-        creditConfig,
-        message,
-        phone,
-        service
-      );
-    } else {
-      if (this.checkForInputValue(message, phone, service).error)
-        return Promise.reject(
-          Object.assign(responseMessage.error.BAD_REQUEST, {
-            error: this.checkForInputValue(message, phone, service).message,
-          })
-        );
 
-      return Promise.reject(responseMessage.error.NOT_FOUND);
+  sendOtpMessage(message: string, phone: number) {
+    for (let index = 0; index < this.services.length; index++) {
+      let serviceFunctionCalled = this.services[index].sendOtpMessage(
+        message,
+        phone
+      );
+      if (!serviceFunctionCalled) continue;
+      return serviceFunctionCalled;
     }
+    throw new Error("No service allowed this.");
   }
-  /**
-     *
-     * @param message
-     * @param phone
-     * @param service
-     * @param account
-      Not in use currently. Under Development
-     */
-  protected sendPromotionMessage(
-    message: string,
-    phone: number,
-    service: string,
-    account?: string
-  ): Promise<any> {
-    let creditConfig = this.checkForCreds(service, account);
-    if (
-      creditConfig &&
-      !this.checkForInputValue(message, phone, service).error
-    ) {
-      return ServiceRequest.serviceRequest(
-        creditConfig,
+  sendPromotionalMessage(message: string, phone: number) {
+    for (let index = 0; index < this.services.length; index++) {
+      let serviceFunctionCalled = this.services[index].sendPromotionalMessage(
         message,
-        phone,
-        service
+        phone
       );
-    } else {
-      if (this.checkForInputValue(message, phone, service).error)
-        return Promise.reject(
-          Object.assign(responseMessage.error.BAD_REQUEST, {
-            error: this.checkForInputValue(message, phone, service).message,
-          })
-        );
+      if (!serviceFunctionCalled) continue;
+      return serviceFunctionCalled;
+    }
+    throw new Error("No service allowed this.");
+  }
 
-      return Promise.reject(responseMessage.error.NOT_FOUND);
+  checkForServiceAndIfFoundSendSMS(account: string) {}
+
+  addVendors(config: any) {
+    let vendors: any[] = [];
+    let error;
+    config.vendorConfigList.forEach((element: any) => {
+      if (element.type && element.cred)
+        vendors.push(this.smsVendorFactory(element));
+      else error = true;
+    });
+    if (error) throw new Error("type and cred are mandatory.");
+    else this.services = vendors;
+  }
+
+  smsVendorFactory(config: any) {
+    switch (config.type) {
+      case "kalyera":
+        return new Kalyera(config.cred);
+      case "awspinpoint":
+        return new AwsPinpoint(config.cred);
+        
+      default:
+        return new MocekdService(config.cred);
     }
   }
 }
