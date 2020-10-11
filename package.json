@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "mocha",
-    "build": "tsc -p ."
+    "build": "tsc -p .",
+    "lint": "eslint './dist/**.js'"
   },
   "repository": {
     "type": "git",
@@ -27,5 +28,10 @@
   },
   "dependencies": {
     "axios": "^0.20.0"
-  }
+  },
+   "husky": {
+     "hooks": {
+       "pre-commit": "npm run build && npm run test"
+     }
+   },
 }

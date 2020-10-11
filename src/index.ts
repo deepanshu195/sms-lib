@@ -60,8 +60,4 @@ class SmsService extends SmsManager {
 // )
 export default SmsService;
 
-  // "husky": {
-  //   "hooks": {
-  //     "pre-commit": "npm run build && npm run test"
-  //   }
-  // },
+
