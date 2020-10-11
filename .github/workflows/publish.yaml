@@ -1,4 +1,4 @@
-name: Send SMS 
+name: Send SMS
 
 on:
   push:
@@ -6,21 +6,22 @@ on:
       - master
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: 'registry setup'
+      - name: "registry setup"
         uses: actions/setup-node@v1
         with:
-          node-version: '12.x'
-          registry-url: 'https://npm.pkg.github.com'
-          scope: '@buddy-git'
+          node-version: "12.x"
+          registry-url: "https://npm.pkg.github.com"
+          scope: "@buddy-git"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: install
         run: npm install
+      - name: build
+        run: npm run build
       - name: publish
         run: npm publish
         env:
