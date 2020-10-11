@@ -1,0 +1,19 @@
+extends:
+  - eslint:recommended
+  - plugin:node/recommended
+  - prettier
+env:
+  commonjs: true
+  es6: true
+  node: true
+  mocha: true
+rules:
+  space-before-function-paren: 0
+  node/no-missing-require: off
+  prefer-promise-reject-errors: error
+  no-throw-literal: error
+  no-process-exit: warn
+  keyword-spacing: error
+  curly: error
+parserOptions:
+  "ecmaVersion": 10

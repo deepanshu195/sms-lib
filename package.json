@@ -18,6 +18,8 @@
   "devDependencies": {
     "@sinonjs/referee": "^6.1.0",
     "@types/node": "^14.11.5",
+    "@typescript-eslint/eslint-plugin": "^4.4.0",
+    "@typescript-eslint/parser": "^4.4.0",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "eslint": "^7.10.0",
@@ -38,7 +40,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && npm run test"
+      "pre-commit": ""
     }
   }
 }
