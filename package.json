@@ -34,4 +34,7 @@
        "pre-commit": "npm run build && npm run test"
      }
    },
+  "lint-staged": {
+    "*.js": ["eslint --fix","git add"]
+  }
 }
