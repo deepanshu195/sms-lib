@@ -16,16 +16,8 @@
     message: string,
     phone: number
   ) {
-    if (!message || !phone) {
-      return {
-        error: true,
-        message: `${
-          message ? "phone" : "message"
-        } is mandatory.`,
-      };
-    }
-    return {
-      error: false,
-    };
+  if(!message || !phone){
+      throw  new  Error("Message and Phone are mandatory");
+  }
   }
 export default {checkForCreds,checkForInputValue}

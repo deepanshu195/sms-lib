@@ -19,7 +19,10 @@ let testCase = [
 ];
 
 let sampleInput = {
-  kalyera: {
+  vendorConfigList: [
+    {
+      type: "test",
+      cred: {
     otp: {
       method: "xxx",
       api_key: "xxxx",
@@ -31,8 +34,18 @@ let sampleInput = {
       api_key: "xxxx",
       sender: "xxxx",
       baseEndpoint: "xxxx",
-    },
+    }
+  }
+    },{
+    type: "mocked",
+    cred:{
+    }
   },
+    {
+      type: "random",
+      cred:{}
+    }]
+
 };
 
 module.exports = {

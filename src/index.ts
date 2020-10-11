@@ -1,8 +1,7 @@
-import SendSms from "./sendsms/index";
+import SmsManager from "./sms/index";
 // @ts-ignore
-import CredObject from "./credentials";
 /** send Message **/
-class SmsService extends SendSms {
+class SmsService extends SmsManager {
   /**
    *
    * @param credential
@@ -21,46 +20,44 @@ class SmsService extends SendSms {
     this.addVendors(credential);
   }
 }
-var b = new SmsService();
-b.initialize({
-  vendorConfigList: [
-    {
-      type: "awspinpoint",
-      cred: {
-        otp: {
-          method: "sms",
-          api_key: "A2fc9ecf2f13d876aae530b68ca2ad3e5",
-          sender: "SLCEIT",
-          baseEndpoint: "https://api-alerts.kaleyra.com/v4/",
-        },
-      },
-    },
-    {
-      type: "Kaleyra",
-      cred: {
-        otp: {
-          method: "sms",
-          api_key: "A2fc9ecf2f13d876aae530b68ca2ad3e5",
-          sender: "SLCEIT",
-          baseEndpoint: "https://api-alerts.kaleyra.com/v4/",
-        },
-        transactional: {
-          method: "sms",
-          api_key: "A69345d260cc2b586c2aed63b70730139",
-          // A69345d260cc2b586c2aed63b70730139
-          sender: "GARPRE",
-          baseEndpoint: "https://api-alerts.kaleyra.com/v4/",
-        },
-      },
-    },
-  ],
-});
-b.sendTransactionalMessage(
-  "Hi Ramu, your order (Order ID: 201) has been successfully processed. Please check your email for further details. Login @ https://slicepay.in/",
-  9629785576
-)
-  .then((res: any) => console.log(res))
-  .catch((err: any) => console.log(err));
+// var b = new SmsService();
+// b.initialize({
+//   vendorConfigList: [
+//     {
+//       type: "awspinpoint",
+//       cred: {
+//         otp: {
+//           method: "sms",
+//           api_key: "A2fc9ecf2f13d876aae530b68ca2ad3e5",
+//           sender: "SLCEIT",
+//           baseEndpoint: "https://api-alerts.kaleyra.com/v4/",
+//         },
+//       },
+//     },
+//     {
+//       type: "Kaleyra",
+//       cred: {
+//         otp: {
+//           method: "sms",
+//           api_key: "A2fc9ecf2f13d876aae530b68ca2ad3e5",
+//           sender: "SLCEIT",
+//           baseEndpoint: "https://api-alerts.kaleyra.com/v4/",
+//         },
+//         transactional: {
+//           method: "sms",
+//           api_key: "A69345d260cc2b586c2aed63b70730139",
+//           // A69345d260cc2b586c2aed63b70730139
+//           sender: "GARPRE",
+//           baseEndpoint: "https://api-alerts.kaleyra.com/v4/",
+//         },
+//       },
+//     },
+//   ],
+// });
+// b.sendTransactionalMessage(
+//   "Hi Ramu, your order (Order ID: 101) has been successfully processed. Please check your email for further details. Login @ https://slicepay.in/",
+//   7678130304
+// )
 export default SmsService;
 
   // "husky": {
@@ -68,7 +65,3 @@ export default SmsService;
   //     "pre-commit": "npm run build && npm run test"
   //   }
   // },
-  // "dependencies": {
-  //   "axios": "^0.20.0"
-  // }
-
