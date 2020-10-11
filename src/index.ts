@@ -54,6 +54,7 @@ class SmsService extends SmsManager {
 //     },
 //   ],
 // });
+//
 // b.sendTransactionalMessage(
 //   "Hi Ramu, your order (Order ID: 101) has been successfully processed. Please check your email for further details. Login @ https://slicepay.in/",
 //   7678130304
