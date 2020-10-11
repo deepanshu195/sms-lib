@@ -1,7 +1,7 @@
 import SmsManager from './sms/index'
 // @ts-ignore
 
-class C extends Object {
+class Obj extends Object {
     constructor() {
         super()
     }
@@ -12,7 +12,7 @@ class SmsService extends SmsManager {
    *
    * @param credential
    */
-    constructor(credential?: C) {
+    constructor(credential?: Obj) {
         super()
         if (credential) this.initialize(credential)
     }
@@ -21,7 +21,7 @@ class SmsService extends SmsManager {
     /**
    * @param credential
    */
-    initialize(credential: C): void {
+    initialize(credential: Obj): void {
     // @ts-ignore
         this.addVendors(credential)
     }
