@@ -1,13 +1,15 @@
 import SmsManager from './sms/index'
+import SmsBase from './sms/vendors'
 // @ts-ignore
 import { obj } from './utils/types'
 
-class SmsService extends SmsManager {
+export default class SmsService extends SmsManager {
     /**
    *
    * @param credential
    */
-    constructor(credential?: obj) {
+    //   logger ? logger:Console. use like this.
+    constructor(credential?: object, logger?: object) {
         super()
         if (credential) this.initialize(credential)
     }
@@ -16,10 +18,10 @@ class SmsService extends SmsManager {
     /**
    * @param credential
    */
-    initialize(credential: obj): void {
+    initialize(credential: object, logger?: object): void {
     // @ts-ignore
         this.addVendors(credential)
     }
 }
 
-export default SmsService
+const b = new SmsService()
