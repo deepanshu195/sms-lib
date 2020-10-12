@@ -1,7 +1,6 @@
 import SmsManager from './sms/index'
 import SmsBase from './sms/vendors'
 // @ts-ignore
-import { obj } from './utils/types'
 
 export default class SmsService extends SmsManager {
     /**

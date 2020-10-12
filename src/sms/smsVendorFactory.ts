@@ -2,9 +2,8 @@ import Kalyera from './vendors/kalyera'
 import AwsPinpoint from './vendors/awspinpoint'
 import MockedService from './vendors/mockedService'
 import MockedService2 from './vendors/mockedService2'
-import { obj, str } from '../utils/types'
 class SmsVendorFactory {
-    buildVendor(name: str, props: obj) {
+    buildVendor(name: string, props: object) {
         switch (name) {
         case 'awspinpoint':
             return new AwsPinpoint(name, props)

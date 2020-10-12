@@ -1,7 +1,6 @@
 import SmsVendorsFactory from './smsVendorFactory'
 import SmsBase from './vendors/index'
 import helper from '../utils/helper'
-import { obj, arr } from '../utils/types'
 
 class SmsManager {
   vendors: Array<SmsBase> | undefined;
@@ -29,7 +28,7 @@ class SmsManager {
   async sendOtpMessage(
       message: string,
       phone: number,
-      priorityArray?: arr<string>
+      priorityArray?: Array<string>
   ): Promise<any> {
       helper.checkForInputValue(message, phone)
       const vendorsList = this.sendPriorityWise(priorityArray)
@@ -48,7 +47,7 @@ class SmsManager {
   async sendPromotionalMessage(
       message: string,
       phone: number,
-      priorityArray?: arr<string>
+      priorityArray?: Array<string>
   ): Promise<any> {
       helper.checkForInputValue(message, phone)
       const vendorsList = this.sendPriorityWise(priorityArray)
@@ -82,7 +81,7 @@ class SmsManager {
   }
 
   sendPriorityWise(priorityArray?: Array<string>): any[] | undefined {
-      let fillArrayPriorityWise: arr<SmsBase> | undefined
+      let fillArrayPriorityWise: Array<SmsBase> | undefined
       if (priorityArray) {
           priorityArray.forEach((vendorName) => {
               this.vendors?.forEach((vendor) => {

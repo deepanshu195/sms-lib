@@ -1,6 +1,5 @@
 import apiCall from '../../network/apiCallExecutor'
 import SmsBase from './index'
-import { obj } from '../../utils/types'
 class Kalyera extends SmsBase {
   cred: any | undefined;
   constructor(name: string, cred: any) {
@@ -38,7 +37,8 @@ class Kalyera extends SmsBase {
    * Not in use.
    *  **/
   async sendPromotionalMessage(message: string, phone: number): Promise<any> {
-      const { baseEndpoint, api_key, sender, method } = this.cred.promotional || {}
+      const { baseEndpoint, api_key, sender, method } =
+      this.cred.promotional || {}
       const url = `${baseEndpoint}?method=${method}&api_key=${api_key}&sender=${sender}&to=${phone}&message=${encodeURIComponent(
           message
       )}`
@@ -49,7 +49,7 @@ class Kalyera extends SmsBase {
       }
       throw new Error('Could not be fulfilled.')
   }
-  createRequestBody(message: string, phone: number, url: string): obj {
+  createRequestBody(message: string, phone: number, url: string): object {
       return {
           url: url,
           method: 'GET',
