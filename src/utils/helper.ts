@@ -1,23 +1,20 @@
-  
-  function checkForCreds(service: string, account: string) {
+function checkForCreds(service: string, account: string) {
     // @ts-ignore
-    let credConfig = CredInstance.getCreds(service);
+    const credConfig = CredInstance.getCreds(service)
     if (credConfig) {
-      if (account && credConfig[account]) {
-        return credConfig[account];
-      }
-      return credConfig;
+        if (account && credConfig[account]) {
+            return credConfig[account]
+        }
+        return credConfig
     } else {
-      return false;
+        return false
     }
-  }
+}
 
-  function checkForInputValue(
-    message: string,
-    phone: number
-  ) {
-  if(!message || !phone){
-      throw  new  Error("Message and Phone are mandatory");
-  }
-  }
-export default {checkForCreds,checkForInputValue}
+function checkForInputValue(message: string, phone: number) {
+    if (!message || !phone) {
+        throw new Error('Message and Phone are mandatory')
+    }
+}
+const loggerSuffix = 'SENDING_SMS_PACKAGE '
+export default { checkForCreds, checkForInputValue, loggerSuffix }
