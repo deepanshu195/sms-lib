@@ -13,8 +13,6 @@ jobs:
       - name: "registry setup"
         uses: actions/setup-node@v1
         with:
-          node-version: "12.x"
-          registry-url: "https://npm.pkg.github.com"
           scope: "@buddy-git"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -24,5 +22,8 @@ jobs:
         run: npm run build
       - name: publish
         run: npm publish
+      - name: semantic-release
+        run: npx semantic-release
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
