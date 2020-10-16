@@ -1,5 +1,5 @@
 {
-  "name": "@buddy-git/sms-lib",
+  "name": "sms-lib",
   "version": "2.0.0-development",
   "description": "Send sms via this package. Written in TS, it allows you to integrate with other sms service providers easily.",
   "main": "dist/index.js",
@@ -12,7 +12,6 @@
     "type": "git",
     "url": "https://github.com/deepanshu195/sms-lib/"
   },
-  "homepage": "https://github.com/Buddy-Git/sms-lib",
   "author": "Deepanshu",
   "license": "ISC",
   "devDependencies": {
