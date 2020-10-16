@@ -1,6 +1,6 @@
 {
   "name": "sms-lib",
-  "version": "2.0.0-development",
+  "version": "0.0.0-development",
   "description": "Send sms via this package. Written in TS, it allows you to integrate with other sms service providers easily.",
   "main": "dist/index.js",
   "scripts": {
