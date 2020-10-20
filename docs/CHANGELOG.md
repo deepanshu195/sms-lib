@@ -1,3 +1,10 @@
+## [1.1.6](https://github.com/deepanshu195/sms-lib/compare/v1.1.5...v1.1.6) (2020-10-20)
+
+
+### Performance Improvements
+
+* **pencil:** added breaking change ([f607c36](https://github.com/deepanshu195/sms-lib/commit/f607c36c6b1d474f9b774354586b88a47577b222))
+
 ## [1.1.5](https://github.com/deepanshu195/sms-lib/compare/v1.1.4...v1.1.5) (2020-10-20)
 
 
