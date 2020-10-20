@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/deepanshu195/sms-lib/compare/v1.3.0...v1.4.0) (2020-10-20)
+
+
+### Features
+
+* **done:** added BREAKING CHANGE: tag along with BREAKING CHANGE: ([d5d48d7](https://github.com/deepanshu195/sms-lib/commit/d5d48d790fd3c876c3c0a2e627dfe3aa247c639a))
+
 # [1.3.0](https://github.com/deepanshu195/sms-lib/compare/v1.2.0...v1.3.0) (2020-10-20)
 
 
