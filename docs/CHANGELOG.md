@@ -1,3 +1,10 @@
+## [3.0.1](https://github.com/deepanshu195/sms-lib/compare/v3.0.0...v3.0.1) (2020-10-20)
+
+
+### Bug Fixes
+
+* **and:** the fix change ([032e97b](https://github.com/deepanshu195/sms-lib/commit/032e97bc0d79bdd0b88653f8084a979155b9af27))
+
 # [3.0.0](https://github.com/deepanshu195/sms-lib/compare/v2.0.0...v3.0.0) (2020-10-20)
 
 
