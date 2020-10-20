@@ -1,3 +1,16 @@
+# [2.0.0](https://github.com/deepanshu195/sms-lib/compare/v1.4.1...v2.0.0) (2020-10-20)
+
+
+### Bug Fixes
+
+* **and:** the fix change ([fc913ac](https://github.com/deepanshu195/sms-lib/commit/fc913acf93484116320131499f608112df6fd34c))
+* **and:** the fix change ([14b9eab](https://github.com/deepanshu195/sms-lib/commit/14b9eaba7c49633e33b1c37222a19c26fa7784fd))
+
+
+### BREAKING CHANGES
+
+* **and:** this would be a breaking change
+
 ## [1.4.1](https://github.com/deepanshu195/sms-lib/compare/v1.4.0...v1.4.1) (2020-10-20)
 
 
