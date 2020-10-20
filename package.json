@@ -1,7 +1,7 @@
 {
   "name": "sms-lib-testing-for-semantic-release",
   "version": "3.0.1",
-  "description": "Send sms via this package. Written in TS, it allows you to integrate with other sms service providers easily.",
+  "description": "Send 2 sms via this package. Written in TS, it allows you to integrate with other sms service providers easily.",
   "main": "dist/index.js",
   "scripts": {
     "test": "mocha",
