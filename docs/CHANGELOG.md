@@ -1,3 +1,10 @@
+## [1.1.5](https://github.com/deepanshu195/sms-lib/compare/v1.1.4...v1.1.5) (2020-10-20)
+
+
+### Performance Improvements
+
+* added package.json change ([faeae14](https://github.com/deepanshu195/sms-lib/commit/faeae14ca426f6b181bdd9d72221c0cdffc90659))
+
 ## [1.1.4](https://github.com/deepanshu195/sms-lib/compare/v1.1.3...v1.1.4) (2020-10-17)
 
 
