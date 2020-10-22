@@ -1,3 +1,10 @@
+# [3.1.0](https://github.com/deepanshu195/sms-lib/compare/v3.0.1...v3.1.0) (2020-10-22)
+
+
+### Features
+
+* **npm:** added semantic-release/npm in releaserc ([40ad837](https://github.com/deepanshu195/sms-lib/commit/40ad837c083a84a53e879a2074cf39c5869f1169))
+
 ## [3.0.1](https://github.com/deepanshu195/sms-lib/compare/v3.0.0...v3.0.1) (2020-10-20)
 
 
